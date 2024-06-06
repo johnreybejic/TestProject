@@ -45,14 +45,15 @@ def add():
     username = input("Enter your desired user name: ")
     
     #a dictionary named new_user is created containing two key value pairs, with keys 'name' and 'phone'
-    new_user[name] = name
-    new_user[phone] = phone
-    
+    new_user = {'name':name, 'phone':phone}
+   
     #a new dictionary named users is created, uaing username as key and new_user as its corresponding value
     users[username] = new_user
     
     #confirming that the entry of user details is successful
     print(f"{name} added successfully.\n")
+
+    print(users)
 
 # Function to search for a contact
 def search():
@@ -61,17 +62,19 @@ def search():
     
     #conditional statement checking if the search_username is in the recorded users
     if search_username in users.keys():
-        print(f"{search_username}'s phone number: {users[search_username][phone]}\n")
+        print(f"{search_username}'s phone number: {users[search_username]['phone']}\n")
     else:
         print(f"{search_username} not found.\n")     
 
 # Function to update a contact        
 def update():
-    username = input("Enter the username to search for: ")
-    if username in users.keys():
-        new_phone = input(f"Please enter {username}'s new phone number: ") 
-        users[username]['phone'] = new_phone
-        print(f"{username}'s contact updated successfully.\n") 
+    update_username = input("Enter the username to search for: ")
+    if update_username in users.keys():
+        new_phone = input(f"Please enter {update_username}'s new phone number: ") 
+        users[update_username]['phone'] = new_phone
+        print(f"{update_username}'s contact updated successfully.\n") 
+    else:
+        print(f"{update_username} is not yet registered.")
 
 # Function to show thw whole contact list        
 def show():
@@ -80,7 +83,7 @@ def show():
         print("No users yet\n")
     else:     
    	 for username, new_user in users.items():
-            print(f"{username} | {users[username][name]} | {users[username][ phone]}" )
+            print(f"{username} | {users[username]['name']} | {users[username]['phone']}" )
 
 
 main()        
